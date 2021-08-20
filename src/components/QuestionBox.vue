@@ -1,5 +1,5 @@
 <template>
-   <div>
+  <!-- <div>
   <b-jumbotron lead="Bootstrap v4 Components for Vue.js 2">
      <template #lead>
   {{currentQuestion.question}}
@@ -29,7 +29,51 @@
      </b-button>
   </b-jumbotron>
  
-</div>
+</div>-->
+ <section class="u-clearfix u-section-1" id="sec-1d44">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-gutter-10 u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1">
+                  <h2 class="u-text u-text-default u-text-1">QUESTIONS</h2>
+                  <p class="u-text u-text-2">{{currentQuestion.question}}</p>
+                  <a  class="u-border-2 u-border-grey-50 u-border-hover-grey-50 u-btn u-btn-round u-button-style u-hover-grey-50 u-none u-radius-50 u-text-hover-white u-btn-1"
+                  @click="submitAnswer"
+                  :disabled="selectedIndex=== null || answered "
+                  >
+                  Submit
+                  </a>
+                  <a  class="u-border-2 u-border-grey-50 u-border-hover-grey-50 u-btn u-btn-round u-button-style u-hover-grey-50 u-none u-radius-50 u-text-hover-white u-btn-2"
+                  @click="next"
+                  >
+                  Next
+                  </a>
+                </div>
+              </div>
+              <div class="u-container-style u-grey-50 u-layout-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle-xl u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-2">
+                  <div class="u-container-style u-group u-opacity u-opacity-90 u-radius-12 u-shape-round u-white u-group-1">
+                    <div class="u-container-layout u-container-layout-3">
+                      <a class="buttonn button1"
+                     v-for="(answer,index) in answers" 
+  :key="index"
+  @click="selectAnswer(index)"
+  :class="answerClass(index)">
+       {{answer}}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+   
 </template>
 <script>
 import _ from 'lodash'
@@ -45,7 +89,8 @@ return{
     selectedIndex:null,
     shuffledAnswers:[],
     correctIndex:null,
-    answered:false
+    answered:false,
+    image: {backgroundImage: "url(images/et-min.jpg"}
 }
     },
     methods:{
@@ -102,23 +147,47 @@ submitAnswer(){
 }
 </script>
 <style scoped>
+
 .list-group{
     margin-bottom:15px
 }
-.list-group-item:hover{
-    background: aqua;
+.buttonn:hover{
+    background: grey !important;
     cursor: pointer;
+
 }
-.btn{
-    margin:0px 5px
+.newbtn{
+    color:white !important;
+    background:grey !important;
+    width:15px !important;
 }
 .selected{
-    background-color:lightblue;
+    background-color:#555555 !important;
+
 }
 .correct{
-    background-color: lightgreen;
+    background-color: lightgreen !important;
+    
 }
 .incorrect{
-    background-color: red;
+    background-color: red !important;
 }
+.buttonn {
+  background-color: white;
+  border: 3px;
+  border-color:grey;
+  color: grey;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  display:flex;
+  flex-direction: column;
+  flex-wrap:wrap;
+  width:auto;
+  margin: 15px 15px 15px 15px;
+  position: relative;
+}
+
+.button1 {border-radius: 20px;}
 </style>
